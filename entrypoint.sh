@@ -33,7 +33,7 @@ fi
 
 if [[ $VERSION =~ $SEMVER_REGEX ]];
 then
-    echo "::set-output name=VERSION::$VERSION"
+    echo "::set-output name=VERSION::echo $(echo $VERSION | sed 's/v\(.*\)/\1/')"
     exit 0
 else
     exit 1
