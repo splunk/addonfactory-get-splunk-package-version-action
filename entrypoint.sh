@@ -33,7 +33,9 @@ fi
 
 if [[ $VERSION =~ $SEMVER_REGEX ]];
 then
-    echo "::set-output name=VERSION::echo $(echo $VERSION | sed 's/v\(.*\)/\1/')"
+    FINALVERSION=$(echo $VERSION | sed 's/v\(.*\)/\1/')
+    echo "Version to build is $FINALVERSION"
+    echo "::set-output name=VERSION::$FINALVERSION"
     exit 0
 else
     exit 1
