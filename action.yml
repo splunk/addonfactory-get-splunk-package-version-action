@@ -18,7 +18,7 @@ name: "Addon Factory Splunk Package Version"
 description: "Produce a version for Splunk packages compatible with splunkbase"
 runs:
   using: "docker"
-  image: "docker://ghcr.io/splunk/addonfactory-get-splunk-package-version:v1.0.2"
+  image: "docker://ghcr.io/splunk/addonfactory-get-splunk-package-version:v1.0.3"
 inputs:
   SemVer:
     description: Ouput of SEMVER step
