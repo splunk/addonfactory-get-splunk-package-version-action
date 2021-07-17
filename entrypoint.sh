@@ -16,10 +16,13 @@
 #   ######################################################################## 
 
 SEMVER_REGEX='^v[0-9]+\.[0-9]+\.[0-9]+$'
+BETA_REGEX='^v[0-9]+\.[0-9]+\.[0-9]+-beta\.[0-9]+$'
 if [[ $INPUT_SEMVER =~ $SEMVER_REGEX ]];
 then
     echo using provided semver
     VERSION=$INPUT_SEMVER
+elif [[ $INPUT_SEMVER =~ $BETA_REGEX ]];
+    VERSION=$(echo $INPUT_SEMVER | awk '{gsub("-beta\.", "B");print}')
 else
     if [[ $GITHUB_EVENT_NAME != 'pull_request' ]]
     then
