@@ -16,12 +16,13 @@
 #   ######################################################################## 
 
 SEMVER_REGEX='^v[0-9]+\.[0-9]+\.[0-9]+$'
+echo working with version $INPUT_SEMVER
 if [[ $INPUT_SEMVER =~ $SEMVER_REGEX ]];
 then
     echo using provided semver
     VERSION=$INPUT_SEMVER
 else
-    if [[ $GITHUB_EVENT_NAME != 'pull_request' ]]
+    if [[ $GITHUB_EVENT_NAME != 'pull_request' ]];
     then
         echo this is not a release build and NOT PR RUNID + run ID
         VERSION=v0.0.${GITHUB_RUN_ID}
