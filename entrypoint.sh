@@ -15,8 +15,8 @@
 #    limitations under the License.
 #   ######################################################################## 
 
-SEMVER_REGEX='^v[0-9]+\.[0-9]+\.[0-9]+$'
-BETA_REGEX='^v[0-9]+\.[0-9]+\.[0-9]+-beta\.[0-9]+$'
+SEMVER_REGEX='^v?[0-9]+\.[0-9]+\.[0-9]+$'
+BETA_REGEX='^v?[0-9]+\.[0-9]+\.[0-9]+-beta\.[0-9]+$'
 echo working with version $INPUT_SEMVER
 
 if [[ $INPUT_SEMVER =~ $SEMVER_REGEX ]];
@@ -36,6 +36,6 @@ else
         VERSION=v0.${INPUT_PRNUMBER}.${GITHUB_RUN_ID}
     fi
 fi
-
-echo "Version to build is $VERSION"
-echo "::set-output name=VERSION::$VERSION"
+FINALVERSION=$(echo $VERSION | sed 's/v?\(.*\)/\1/')
+echo "Version to build is $FINALVERSION"
+echo "::set-output name=VERSION::$FINALVERSION"
