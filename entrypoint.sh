@@ -30,10 +30,10 @@ else
     if [[ $GITHUB_EVENT_NAME != 'pull_request' ]];
     then
         echo this is not a release build and NOT PR RUNID + run ID
-        VERSION=v0.0.${GITHUB_RUN_ID}
+        VERSION=0.0.${GITHUB_RUN_ID}
     else 
         echo this is not a release build and is a PR use run ID
-        VERSION=v0.${INPUT_PRNUMBER}.${GITHUB_RUN_ID}
+        VERSION=0.${INPUT_PRNUMBER}.${GITHUB_RUN_ID}
     fi
 fi
 FINALVERSION=$(echo $VERSION | sed 's/v?\(.*\)/\1/')
