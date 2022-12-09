@@ -38,4 +38,4 @@ else
 fi
 FINALVERSION=$(echo $VERSION | sed 's/v?\(.*\)/\1/')
 echo "Version to build is $FINALVERSION"
-echo "::set-output name=VERSION::$FINALVERSION"
+echo "VERSION=$FINALVERSION" >> $GITHUB_OUTPUT
