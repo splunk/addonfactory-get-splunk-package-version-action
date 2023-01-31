@@ -1,5 +1,6 @@
 {
-    "branches": [
+    "branches": 
+    [
         '+([0-9])?(.{+([0-9]),x}).x',
         'main', 
         'next', 
@@ -9,12 +10,18 @@
         prerelease: true
         }
     ],
-    plugins: [
+    plugins: 
+    [
         "@semantic-release/commit-analyzer",
         "@semantic-release/release-notes-generator",
-        ["@semantic-release/exec", {
-            "prepareCmd": 'yq -i eval ".runs.image = \"docker://ghcr.io/splunk/addonfactory-get-splunk-package-version-action:v${nextRelease.version}\"" action.yml'
-        }],
+        [
+            "@semantic-release/exec", 
+            {
+                "prepareCmd": 'yq -i eval ".runs.image = \"docker://ghcr.io/splunk/addonfactory-get-splunk-package-version-action:v${nextRelease.version}\"" action.yml',
+                "verifyReleaseCmd": "echo \"version=${nextRelease.version}\" >> $GITHUB_OUTPUT",
+                "successCmd": "echo \"new_release_published=${'true'}\" >> $GITHUB_OUTPUT",
+            }
+        ],
         ["@semantic-release/git", {
             "assets": ["action.yml"],
             "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
