@@ -25,7 +25,7 @@ then
     VERSION=$INPUT_SEMVER
 elif [[ $INPUT_SEMVER =~ $BETA_REGEX ]];
 then
-    VERSION=$(echo $INPUT_SEMVER | awk '{gsub("-beta\.", "B");print}')
+    VERSION=$(echo $INPUT_SEMVER | awk '{gsub("-beta\.", "-B");print}')
 else
     if [[ $GITHUB_EVENT_NAME != 'pull_request' ]];
     then
